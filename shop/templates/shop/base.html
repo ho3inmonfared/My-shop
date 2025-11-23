@@ -1,0 +1,99 @@
+{% load static %}
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="fa">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>خانه</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+    </head>
+    <body dir='rtl'>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="#!">فروشگاه من</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'home' %}">خانه</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'about_us' %}">درباره ما</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">فروشگاه</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#!">تمامی محصولات</a></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item" href="#!">محصولات پرطرفدار</a></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item" href="#!">جدیدترین ها</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex">
+                        <button class="btn btn-outline-dark" type="submit">
+                            <i class="bi-cart-fill me-1"></i>
+                            سبد خرید
+                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        
+        {% block content %}
+
+        {% endblock %}
+
+        <!-- Footer-->
+        <footer class="bg-dark text-white pt-5 pb-3">
+            <div class="container">
+                <div class="row text-center text-md-start">
+                    <!-- درباره ما -->
+                    <div class="col-md-4 mb-4">
+                        <h5 class="fw-bold">درباره فروشگاه</h5>
+                        <p class="text-muted" style="line-height: 1.8;">
+                            فروشگاه ما با هدف ارائه بهترین محصولات و تجربه خرید آنلاین ساده و مطمئن ایجاد شده است.
+                            کیفیت، سرعت ارسال و پشتیبانی همیشگی از ارزش‌های ماست.
+                        </p>
+                    </div>
+
+                    <!-- لینک‌های سریع -->
+                    <div class="col-md-4 mb-4">
+                        <h5 class="fw-bold">لینک‌های سریع</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="text-white text-decoration-none">خانه</a></li>
+                            <li><a href="#" class="text-white text-decoration-none">محصولات</a></li>
+                            <li><a href="#" class="text-white text-decoration-none">محصولات جدید</a></li>
+                            <li><a href="#" class="text-white text-decoration-none">تماس با ما</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- شبکه‌های اجتماعی -->
+                    <div class="col-md-4 mb-4">
+                        <h5 class="fw-bold">ما را دنبال کنید</h5>
+                        <a href="#" class="text-white fs-4 me-3"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-white fs-4 me-3"><i class="bi bi-telegram"></i></a>
+                        <a href="#" class="text-white fs-4 me-3"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-white fs-4"><i class="bi bi-twitter"></i></a>
+                    </div>
+                </div>
+
+                <hr class="border-light">
+                <p class="text-center text-muted small mb-0">
+                    &copy; 2025 فروشگاه من | تمامی حقوق محفوظ است.
+                </p>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="{% static 'js/scripts.js' %}"></script>
+    </body>
+</html>

@@ -19,7 +19,7 @@ class CustomerAdmin(admin.ModelAdmin):
 @admin.register(models.Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('title', 'price', 'category')
-    list_filter = ('category',)
+    list_filter = ('category','is_sale')
     search_fields = ('title', 'description')
 
 
