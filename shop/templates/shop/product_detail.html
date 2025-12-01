@@ -1,0 +1,52 @@
+{% extends "shop/base.html" %}
+{% load humanize %}
+{% block content %}
+<!-- Product Detail Section-->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5">
+            <div class="col-md-6">
+                <!-- Product image-->
+                <img class="card-img-top" src="{{ product.image.url }}" alt="..." />
+            </div>
+            <div class="col-md-6">
+                <!-- Product details-->
+                <div class="card-body p-4">
+                    <div class="text-center">
+
+                        <!-- Product name -->
+                        <h2 class="fw-bolder">{{ product.title }}</h2>
+
+                        <!-- ⭐ Stars -->
+                        <div class="mb-2" style="color:#f4c430; font-size:1.25rem;">
+                            {% for i in "12345" %}
+                                {% if forloop.counter <= product.stars %}
+                                    ★
+                                {% else %}
+                                    ☆
+                                {% endif %}
+                            {% endfor %}
+                            <span class="text-muted small">({{ product.stars }}/5)</span>
+                        </div>
+                        <p>{{ product.description }}</p>
+
+                        {% if product.is_sale %}
+                            <span class="text-danger small">
+                                <strike>{{ product.price|intcomma }} تومان</strike>
+                            </span>
+                            <br>
+                            <span class="fw-bold fs-4 text-success">
+                                {{ product.sale_price|intcomma }} تومان
+                            </span>
+                        {% else %}
+                            <span class="fw-bold fs-4">
+                                {{ product.price|intcomma }} تومان
+                            </span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -2,58 +2,81 @@
 {% load humanize %}
 {% block content %}
 <!-- Header-->
-        <header class="bg-dark py-5">
-            <div class="container px-4 px-lg-5 my-5">
-                <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">فروشگاه من</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">بهترین محصولات، کمترین قیمت</p>
-                </div>
-            </div>
-        </header>
-        <!-- Section-->
-        <section class="py-5">
-            <div class="container px-4 px-lg-5 mt-5">
-                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                    {% for product in products %}
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            {% if product.is_sale %}
-                            <!-- Sale badge-->
-                            <div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">تخفیف ویژه</div>
-                            {% endif %}
-                            <!-- Product image-->
-                            <img class="card-img-top" src="{{ product.image.url }}" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">{{ product.title }}</h5>
-                                    <br>
-                                    <p> {{product.description | truncatewords:8 }} </p>
-                                    {% if product.is_sale %}
-                                    <span class="text-danger small">
-                                        <strike>{{ product.price|intcomma }} تومان</strike>
-                                    </span>
-                                    <br>
-                                    <span class="fw-bold fs-5 text-success">
-                                        {{ product.sale_price|intcomma }} تومان
-                                    </span>
+<header class="bg-danger py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">فروشگاه من</h1>
+            <p class="lead fw-normal text-white-50 mb-0">بهترین محصولات، کمترین قیمت</p>
+        </div>
+    </div>
+</header>
+
+<!-- Section-->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            {% for product in products %}
+            <div class="col mb-5">
+                <div class="card h-100">
+
+                    {% if product.is_sale %}
+                    <div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
+                        تخفیف ویژه
+                    </div>
+                    {% endif %}
+
+                    <!-- Product image-->
+                    <img class="card-img-top" src="{{ product.image.url }}" alt="..." />
+
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+
+                            <!-- Product name -->
+                            <h5 class="fw-bolder">{{ product.title }}</h5>
+
+                            <!-- ⭐ Stars -->
+                            <div class="mb-2" style="color:#f4c430; font-size:1.25rem;">
+                                {% for i in "12345" %}
+                                    {% if forloop.counter <= product.stars %}
+                                        ★
                                     {% else %}
-                                    <span class="fw-bold fs-5">
-                                        {{ product.price|intcomma }} تومان
-                                    </span>
+                                        ☆
                                     {% endif %}
-                                </div>
+                                {% endfor %}
+                                <span class="text-muted small">({{ product.stars }}/5)</span>
                             </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">خرید</a></div>
-                            </div>
+
+                            <p>{{ product.description|truncatewords:8 }}</p>
+
+                            {% if product.is_sale %}
+                                <span class="text-danger small">
+                                    <strike>{{ product.price|intcomma }} تومان</strike>
+                                </span>
+                                <br>
+                                <span class="fw-bold fs-5 text-success">
+                                    {{ product.sale_price|intcomma }} تومان
+                                </span>
+                            {% else %}
+                                <span class="fw-bold fs-5">
+                                    {{ product.price|intcomma }} تومان
+                                </span>
+                            {% endif %}
                         </div>
                     </div>
-                    {% endfor %}
+
+                    <!-- Product actions -->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center">
+                            <a class="btn btn-outline-dark mt-auto" href="{% url 'product_detail' product.id %}">صفحه محصول</a>
+                        </div>
                     </div>
+
                 </div>
             </div>
-        </section>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
 {% endblock %}

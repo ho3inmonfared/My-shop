@@ -1,5 +1,5 @@
 from django.db import models
-from django.core.validators import MinLengthValidator,MaxLengthValidator
+from django.core import validators
 from django.utils.text import slugify
 
 class Category(models.Model):
@@ -13,9 +13,9 @@ class Customer(models.Model):
     
     first_name=models.CharField(max_length=300)
     last_name=models.CharField(max_length=300)
-    phone=models.CharField(max_length=20,validators=[MinLengthValidator(10)],unique=True)
+    phone=models.CharField(max_length=20,validators=[validators.MinLengthValidator(10)],unique=True)
     email=models.EmailField(max_length=300,unique=True)
-    password=models.CharField(max_length=50,validators=[MinLengthValidator(8)])
+    password=models.CharField(max_length=50,validators=[validators.MinLengthValidator(8)])
     
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
@@ -30,6 +30,7 @@ class Product(models.Model):
     created_at=models.DateTimeField(auto_now_add=True)
     is_sale=models.BooleanField(default=False)
     sale_price=models.DecimalField(max_digits=20,decimal_places=0,default=0)
+    stars=models.PositiveIntegerField(default=0, validators=[validators.MaxValueValidator(5)])
     
     def __str__(self):
         return self.title
